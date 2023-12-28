@@ -1,6 +1,5 @@
 import junit.framework.Assert;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -8,6 +7,7 @@ public class BankStatementCSVParserTest {
 
     private final BankStatementParser statementParser = new BankStatementCSVParser();
 
+    // трехступенчатый шаблон модульного тестирования: Giwen-When-Then
     @Test
     public void shouldParceOneCorrectLine() throws Exception {
         final String line = "30-01-2017, -50.00, Tesco";
