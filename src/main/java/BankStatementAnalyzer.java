@@ -7,16 +7,18 @@ import java.util.List;
 
 
 public class BankStatementAnalyzer {
-    private static final String RESOURCES = "src/main/resources/";
-    private static final String FILE_NAME = "transactions"; // Жестко закодированный путь к файлу
+//    private static final String RESOURCES = "src/main/resources/";
+    private static final String FILE_NAME = "C:\\Users\\Алекс\\IdeaProjects\\BankTransactionAnalyzer\\src\\main\\resources\\transactions"; // Жестко закодированный путь к файлу
 
-    private static final BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
 
-    public static void main(String[] args) throws IOException {
-        final Path path = Paths.get(RESOURCES + FILE_NAME);
+    //    отвязываю BankStatementAnalyzer от специфической реализации BankStatementCSVParser с помощью введения метода analyze
+    public void analyze(final String fileName, final BankStatementParser bankStatementParser) throws IOException {
+
+//        final Path path = Paths.get(RESOURCES + fileName);
+        final Path path = Paths.get(FILE_NAME);
         final List<String> lines = Files.readAllLines(path);
 
-        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFromCSV(lines);
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
 
         final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
 
@@ -31,22 +33,3 @@ public class BankStatementAnalyzer {
         System.out.println("The total salary received is " + bankStatementProcessor.calculateTotalForCategory("Salary"));
     }
 }
-
-//    public static double calculateTotalAmount(final List<BankTransaction> bankTransactions) {
-//        double total = 0d;
-//        for (final BankTransaction bankTransaction : bankTransactions) {
-//            total += bankTransaction.getAmount();
-//        }
-//        return total;
-//    }
-
-//    public static List<BankTransaction> selectInMonth(final List<BankTransaction> bankTransactions, final Month month) {
-//        final List<BankTransaction> bankTransactionsInMonth = new ArrayList<>();
-//        for (final BankTransaction bankTransaction : bankTransactions) {
-//            if (bankTransaction.getDate().getMonth() == month) {
-//                bankTransactionsInMonth.add(bankTransaction);
-//            }
-//        }
-//        return bankTransactionsInMonth;
-//    }
-//}
