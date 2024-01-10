@@ -1,4 +1,5 @@
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankStatementProcessor {
@@ -34,5 +35,16 @@ public class BankStatementProcessor {
         }
     }
     return total;
+    }
+
+    // добавляю поиск транзакций на сумму больше заданной
+    public List<BankTransaction> findTransactionsGreaterThanEqual(final int amount) {
+        final List<BankTransaction> result = new ArrayList<>();
+        for(final BankTransaction bankTransaction: bankTransactions) {
+            if(bankTransaction.getAmount() >= 3000) {
+                result.add(bankTransaction);
+            }
+        }
+        return result;
     }
 }
