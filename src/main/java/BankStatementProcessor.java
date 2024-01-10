@@ -37,11 +37,11 @@ public class BankStatementProcessor {
     return total;
     }
 
-    // добавляю поиск транзакций на сумму больше заданной
-    public List<BankTransaction> findTransactionsGreaterThanEqual(final int amount) {
+    // добавляю поиск операций на определенную сумму и за определенный месяц
+    public List<BankTransaction> findTransactionsInMonthAndGreater(final Month month, final int amount) {
         final List<BankTransaction> result = new ArrayList<>();
         for(final BankTransaction bankTransaction: bankTransactions) {
-            if(bankTransaction.getAmount() >= 3000) {
+            if(bankTransaction.getDate().getMonth() == month && bankTransaction.getAmount() >= 3000) {
                 result.add(bankTransaction);
             }
         }
