@@ -19,3 +19,5 @@ public class HtmlExporter implements Exporter {
         return result;
     }
 }
+
+// добавить сохранение в файл html
